@@ -9,7 +9,6 @@ import com.innerControl.models.repository.EstoqueRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -36,7 +35,7 @@ public class EstoqueController {
                                    @PageableDefault(size = 10, sort = "nome", direction = Sort.Direction.ASC) Pageable paginacao){
 
         Page<Estoque> estoque = estoqueRepository.findAll(paginacao);
-        return new PageImpl<>(estoqueMapper.toPaginatedDtoList(estoque.getContent()), paginacao, estoque.getTotalElements());
+        return EstoqueDto.converter(estoque);
     }
 
     @GetMapping("/{id}")

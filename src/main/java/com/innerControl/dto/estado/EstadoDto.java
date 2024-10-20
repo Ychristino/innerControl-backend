@@ -1,13 +1,16 @@
 package com.innerControl.dto.estado;
 
+import com.innerControl.dto.mapper.EstoqueMapper;
+import com.innerControl.dto.pais.PaisDto;
 import com.innerControl.models.Cidade;
 import com.innerControl.models.Endereco;
 import com.innerControl.models.Estado;
 import com.innerControl.models.Pais;
+import org.springframework.data.domain.Page;
 
 import java.util.Set;
 
-public class EstadoDto {
+public class EstadoDto{
 
     private Long id;
     private Pais pais;
@@ -47,5 +50,12 @@ public class EstadoDto {
 
     public String getSigla() {
         return sigla;
+    }
+    public static Page<EstadoDto> converter(Page<Estado> entity) {
+        return entity.map(EstadoDto::new);
+    }
+
+    public static EstadoDto converter(Estado entity) {
+        return new EstadoDto(entity);
     }
 }

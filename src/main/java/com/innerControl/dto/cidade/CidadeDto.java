@@ -1,13 +1,13 @@
 package com.innerControl.dto.cidade;
 
-import com.innerControl.models.Cidade;
-import com.innerControl.models.Endereco;
-import com.innerControl.models.Estado;
-import com.innerControl.models.Pais;
+import com.innerControl.dto.contato.ContatoDto;
+import com.innerControl.dto.mapper.CidadeMapper;
+import com.innerControl.models.*;
+import org.springframework.data.domain.Page;
 
 import java.util.Set;
 
-public class CidadeDto {
+public class CidadeDto{
 
     private Long id;
     private Pais pais;
@@ -41,5 +41,14 @@ public class CidadeDto {
 
     public String getNome() {
         return nome;
+    }
+
+
+    public static Page<CidadeDto> converter(Page<Cidade> entity) {
+        return entity.map(CidadeDto::new);
+    }
+
+    public static CidadeDto converter(Cidade entity) {
+        return new CidadeDto(entity);
     }
 }

@@ -36,7 +36,7 @@ public class ProdutoController {
                                    @PageableDefault(size = 10, sort = "nome", direction = Sort.Direction.ASC) Pageable paginacao){
 
         Page<Produto> produtos = produtoRepository.findAll(paginacao);
-        return new PageImpl<>(produtoMapper.toPaginatedDtoList(produtos.getContent()), paginacao, produtos.getTotalElements());
+        return ProdutoDto.converter(produtos);
     }
 
     @GetMapping("/{id}")

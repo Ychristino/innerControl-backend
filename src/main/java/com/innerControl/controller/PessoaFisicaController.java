@@ -36,7 +36,7 @@ public class PessoaFisicaController {
                                         @PageableDefault(size = 10, sort = "nome", direction = Sort.Direction.ASC) Pageable paginacao){
 
         Page<PessoaFisica> pessoasFisicas = pessoaFisicaRepository.findAll(paginacao);
-        return new PageImpl<>(pessoaFisicaMapper.toPaginatedDtoList(pessoasFisicas.getContent()), paginacao, pessoasFisicas.getTotalElements());
+        return PessoaFisicaDto.converter(pessoasFisicas);
     }
 
     @GetMapping("/{id}")

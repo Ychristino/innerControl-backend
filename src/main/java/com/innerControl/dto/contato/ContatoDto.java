@@ -1,10 +1,13 @@
 package com.innerControl.dto.contato;
 
+import com.innerControl.dto.mapper.ContatoMapper;
+import com.innerControl.dto.pessoaFisica.PessoaFisicaDto;
 import com.innerControl.models.Contato;
 import com.innerControl.models.PessoaFisica;
 import com.innerControl.models.TipoContato;
+import org.springframework.data.domain.Page;
 
-public class ContatoDto {
+public class ContatoDto{
 
     private Long id;
     private TipoContato tipoContato;
@@ -32,5 +35,13 @@ public class ContatoDto {
 
     public String getContato() {
         return contato;
+    }
+
+    public static Page<ContatoDto> converter(Page<Contato> entity) {
+        return entity.map(ContatoDto::new);
+    }
+
+    public static ContatoDto converter(Contato entity) {
+        return new ContatoDto(entity);
     }
 }

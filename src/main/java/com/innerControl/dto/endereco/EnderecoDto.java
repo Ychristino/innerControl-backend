@@ -1,10 +1,14 @@
 package com.innerControl.dto.endereco;
 
+import com.innerControl.dto.estoque.EstoqueDto;
+import com.innerControl.dto.mapper.EnderecoMapper;
+import com.innerControl.dto.pessoaFisica.PessoaFisicaDto;
 import com.innerControl.models.*;
+import org.springframework.data.domain.Page;
 
 import java.util.Set;
 
-public class EnderecoDto {
+public class EnderecoDto{
 
 
     private Long id;
@@ -61,5 +65,13 @@ public class EnderecoDto {
 
     public Set<PessoaFisica> getPessoaFisicaSet() {
         return pessoaFisicaSet;
+    }
+
+    public static Page<PessoaFisicaDto> converter(Page<PessoaFisica> entity) {
+        return entity.map(PessoaFisicaDto::new);
+    }
+
+    public static PessoaFisicaDto converter(PessoaFisica entity) {
+        return new PessoaFisicaDto(entity);
     }
 }

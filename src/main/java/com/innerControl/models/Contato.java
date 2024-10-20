@@ -21,9 +21,9 @@ public class Contato {
     @Column(name = "contato")
     private String contato;
 
-    private Contato(){}
+    public Contato(){}
 
-    private Contato(TipoContato tipoContato, PessoaFisica pessoaFisica, String contato){
+    public Contato(TipoContato tipoContato, PessoaFisica pessoaFisica, String contato){
         this.tipoContato = tipoContato;
         this.pessoaFisica = pessoaFisica;
         this.contato = contato;
