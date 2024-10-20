@@ -1,9 +1,11 @@
 package com.innerControl.dto.estoque;
 
+import com.innerControl.dto.mapper.EstoqueMapper;
 import com.innerControl.models.Estoque;
 import com.innerControl.models.Produto;
+import org.springframework.data.domain.Page;
 
-public class EstoqueDto {
+public class EstoqueDto{
 
     private Long id;
     private int quantidade;
@@ -25,5 +27,12 @@ public class EstoqueDto {
 
     public Produto getProduto() {
         return produto;
+    }
+    public static Page<EstoqueDto> converter(Page<Estoque> entity) {
+        return entity.map(EstoqueDto::new);
+    }
+
+    public static EstoqueDto converter(Estoque entity) {
+        return new EstoqueDto(entity);
     }
 }

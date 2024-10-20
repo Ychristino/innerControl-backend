@@ -1,13 +1,13 @@
 package com.innerControl.dto.pais;
 
-import com.innerControl.models.Cidade;
-import com.innerControl.models.Endereco;
-import com.innerControl.models.Estado;
-import com.innerControl.models.Pais;
+import com.innerControl.dto.mapper.PaisMapper;
+import com.innerControl.dto.pessoaFisica.PessoaFisicaDto;
+import com.innerControl.models.*;
+import org.springframework.data.domain.Page;
 
 import java.util.Set;
 
-public class PaisDto {
+public class PaisDto{
 
     private Long id;
     private Set<Estado> estadoSet;
@@ -47,5 +47,12 @@ public class PaisDto {
 
     public String getSigla() {
         return sigla;
+    }
+    public static Page<PaisDto> converter(Page<Pais> entity) {
+        return entity.map(PaisDto::new);
+    }
+
+    public static PaisDto converter(Pais entity) {
+        return new PaisDto(entity);
     }
 }

@@ -1,11 +1,15 @@
 package com.innerControl.dto.produto;
 
+import com.innerControl.dto.mapper.ProdutoMapper;
+import com.innerControl.dto.servico.ServicoDto;
 import com.innerControl.models.Estoque;
 import com.innerControl.models.Produto;
+import com.innerControl.models.Servico;
+import org.springframework.data.domain.Page;
 
 import java.util.Set;
 
-public class ProdutoDto {
+public class ProdutoDto{
 
     private Long id;
     private String nome;
@@ -38,5 +42,13 @@ public class ProdutoDto {
 
     public Set<Estoque> getEstoque() {
         return estoque;
+    }
+
+    public static Page<ProdutoDto> converter(Page<Produto> entity) {
+        return entity.map(ProdutoDto::new);
+    }
+
+    public static ProdutoDto converter(Produto entity) {
+        return new ProdutoDto(entity);
     }
 }

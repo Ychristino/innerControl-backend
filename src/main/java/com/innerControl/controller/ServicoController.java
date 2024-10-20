@@ -36,7 +36,7 @@ public class ServicoController {
                                    @PageableDefault(size = 10, sort = "nome", direction = Sort.Direction.ASC) Pageable paginacao){
 
         Page<Servico> servicos = servicoRepository.findAll(paginacao);
-        return new PageImpl<>(servicoMapper.toPaginatedDtoList(servicos.getContent()), paginacao, servicos.getTotalElements());
+        return ServicoDto.converter(servicos);
     }
 
     @GetMapping("/{id}")
