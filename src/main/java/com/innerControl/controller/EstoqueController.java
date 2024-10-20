@@ -3,7 +3,6 @@ package com.innerControl.controller;
 import com.innerControl.controller.form.estoque.AtualizarEstoqueForm;
 import com.innerControl.controller.form.estoque.EstoqueForm;
 import com.innerControl.dto.estoque.EstoqueDto;
-import com.innerControl.dto.mapper.EstoqueMapper;
 import com.innerControl.models.Estoque;
 import com.innerControl.models.repository.EstoqueRepository;
 import jakarta.transaction.Transactional;
@@ -26,9 +25,6 @@ public class EstoqueController {
 
     @Autowired
     private EstoqueRepository estoqueRepository;
-
-    @Autowired
-    private EstoqueMapper estoqueMapper;
 
     @GetMapping
     public Page<EstoqueDto> listar(Long id,

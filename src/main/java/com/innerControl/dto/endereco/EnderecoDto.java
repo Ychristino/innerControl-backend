@@ -1,7 +1,5 @@
 package com.innerControl.dto.endereco;
 
-import com.innerControl.dto.estoque.EstoqueDto;
-import com.innerControl.dto.mapper.EnderecoMapper;
 import com.innerControl.dto.pessoaFisica.PessoaFisicaDto;
 import com.innerControl.models.*;
 import org.springframework.data.domain.Page;

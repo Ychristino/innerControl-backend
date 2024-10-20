@@ -2,7 +2,6 @@ package com.innerControl.controller;
 
 import com.innerControl.controller.form.pessoaFisica.AtualizarPessoaFisicaForm;
 import com.innerControl.controller.form.pessoaFisica.PessoaFisicaForm;
-import com.innerControl.dto.mapper.PessoaFisicaMapper;
 import com.innerControl.dto.pessoaFisica.PessoaFisicaDto;
 import com.innerControl.models.PessoaFisica;
 import com.innerControl.models.repository.PessoaFisicaRepository;
@@ -27,9 +26,6 @@ public class PessoaFisicaController {
 
     @Autowired
     private PessoaFisicaRepository pessoaFisicaRepository;
-
-    @Autowired
-    private PessoaFisicaMapper pessoaFisicaMapper;
 
     @GetMapping
     public Page<PessoaFisicaDto> listar(Long id,

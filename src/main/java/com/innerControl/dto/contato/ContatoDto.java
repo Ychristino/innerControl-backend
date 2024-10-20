@@ -1,7 +1,5 @@
 package com.innerControl.dto.contato;
 
-import com.innerControl.dto.mapper.ContatoMapper;
-import com.innerControl.dto.pessoaFisica.PessoaFisicaDto;
 import com.innerControl.models.Contato;
 import com.innerControl.models.PessoaFisica;
 import com.innerControl.models.TipoContato;

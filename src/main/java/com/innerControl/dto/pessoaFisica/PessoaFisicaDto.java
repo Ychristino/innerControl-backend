@@ -1,11 +1,8 @@
 package com.innerControl.dto.pessoaFisica;
 
-import com.innerControl.dto.mapper.PessoaFisicaMapper;
-import com.innerControl.dto.produto.ProdutoDto;
 import com.innerControl.models.Contato;
 import com.innerControl.models.Endereco;
 import com.innerControl.models.PessoaFisica;
-import com.innerControl.models.Produto;
 import org.springframework.data.domain.Page;
 
 import java.util.Date;

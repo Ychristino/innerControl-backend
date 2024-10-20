@@ -2,7 +2,6 @@ package com.innerControl.controller;
 
 import com.innerControl.controller.form.produto.AtualizarProdutoForm;
 import com.innerControl.controller.form.produto.ProdutoForm;
-import com.innerControl.dto.mapper.ProdutoMapper;
 import com.innerControl.dto.produto.ProdutoDto;
 import com.innerControl.models.Produto;
 import com.innerControl.models.repository.ProdutoRepository;
@@ -27,9 +26,6 @@ public class ProdutoController {
 
     @Autowired
     private ProdutoRepository produtoRepository;
-
-    @Autowired
-    private ProdutoMapper produtoMapper;
 
     @GetMapping
     public Page<ProdutoDto> listar(Long id,

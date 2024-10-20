@@ -1,8 +1,5 @@
 package com.innerControl.dto.servico;
 
-import com.innerControl.dto.cidade.CidadeDto;
-import com.innerControl.dto.mapper.ServicoMapper;
-import com.innerControl.models.Cidade;
 import com.innerControl.models.PessoaFisica;
 import com.innerControl.models.Estoque;
 import com.innerControl.models.Servico;

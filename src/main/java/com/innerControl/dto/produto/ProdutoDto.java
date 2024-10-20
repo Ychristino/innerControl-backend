@@ -1,10 +1,7 @@
 package com.innerControl.dto.produto;
 
-import com.innerControl.dto.mapper.ProdutoMapper;
-import com.innerControl.dto.servico.ServicoDto;
 import com.innerControl.models.Estoque;
 import com.innerControl.models.Produto;
-import com.innerControl.models.Servico;
 import org.springframework.data.domain.Page;
 
 import java.util.Set;

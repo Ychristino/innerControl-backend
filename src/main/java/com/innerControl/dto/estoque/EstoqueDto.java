@@ -1,6 +1,5 @@
 package com.innerControl.dto.estoque;
 
-import com.innerControl.dto.mapper.EstoqueMapper;
 import com.innerControl.models.Estoque;
 import com.innerControl.models.Produto;
 import org.springframework.data.domain.Page;
