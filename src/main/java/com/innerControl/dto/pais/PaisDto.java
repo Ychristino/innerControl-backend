@@ -1,7 +1,5 @@
 package com.innerControl.dto.pais;
 
-import com.innerControl.dto.mapper.PaisMapper;
-import com.innerControl.dto.pessoaFisica.PessoaFisicaDto;
 import com.innerControl.models.*;
 import org.springframework.data.domain.Page;
 

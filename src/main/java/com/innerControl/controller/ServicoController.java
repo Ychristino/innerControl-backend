@@ -2,7 +2,6 @@ package com.innerControl.controller;
 
 import com.innerControl.controller.form.servico.AtualizarServicoForm;
 import com.innerControl.controller.form.servico.ServicoForm;
-import com.innerControl.dto.mapper.ServicoMapper;
 import com.innerControl.dto.servico.ServicoDto;
 import com.innerControl.models.Servico;
 import com.innerControl.models.repository.ServicoRepository;
@@ -27,9 +26,6 @@ public class ServicoController {
 
     @Autowired
     private ServicoRepository servicoRepository;
-
-    @Autowired
-    private ServicoMapper servicoMapper;
 
     @GetMapping
     public Page<ServicoDto> listar(Long id,

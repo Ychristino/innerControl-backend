@@ -1,7 +1,5 @@
 package com.innerControl.dto.estado;
 
-import com.innerControl.dto.mapper.EstoqueMapper;
-import com.innerControl.dto.pais.PaisDto;
 import com.innerControl.models.Cidade;
 import com.innerControl.models.Endereco;
 import com.innerControl.models.Estado;

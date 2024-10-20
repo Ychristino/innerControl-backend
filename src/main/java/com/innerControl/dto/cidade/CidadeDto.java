@@ -1,7 +1,5 @@
 package com.innerControl.dto.cidade;
 
-import com.innerControl.dto.contato.ContatoDto;
-import com.innerControl.dto.mapper.CidadeMapper;
 import com.innerControl.models.*;
 import org.springframework.data.domain.Page;
 
