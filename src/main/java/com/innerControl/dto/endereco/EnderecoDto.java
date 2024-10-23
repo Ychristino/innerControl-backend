@@ -1,6 +1,5 @@
 package com.innerControl.dto.endereco;
 
-import com.innerControl.dto.pessoaFisica.PessoaFisicaDto;
 import com.innerControl.models.*;
 import org.springframework.data.domain.Page;
 
@@ -65,11 +64,11 @@ public class EnderecoDto{
         return pessoaFisicaSet;
     }
 
-    public static Page<PessoaFisicaDto> converter(Page<PessoaFisica> entity) {
-        return entity.map(PessoaFisicaDto::new);
+    public static Page<EnderecoDto> converter(Page<Endereco> entity) {
+        return entity.map(EnderecoDto::new);
     }
 
-    public static PessoaFisicaDto converter(PessoaFisica entity) {
-        return new PessoaFisicaDto(entity);
+    public static EnderecoDto converter(Endereco entity) {
+        return new EnderecoDto(entity);
     }
 }
