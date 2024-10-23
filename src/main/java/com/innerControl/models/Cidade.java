@@ -5,8 +5,10 @@ import jakarta.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name="cidade")
-public class Cidade {
+@Table(name = "cidade",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = {"pais_id", "estado_id", "nome"})
+        })public class Cidade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -5,9 +5,11 @@ import jakarta.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "estado")
+@Table(name = "estado",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = {"pais_id", "nome", "sigla"})
+        })
 public class Estado {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

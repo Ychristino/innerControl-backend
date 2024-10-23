@@ -36,4 +36,24 @@ public class PessoaFisicaForm {
     public PessoaFisica converter(){
         return new PessoaFisica(nome, cpf, dataNascimento, endereco, contato);
     }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public void setEndereco(Set<Endereco> endereco) {
+        this.endereco = endereco;
+    }
+
+    public void setContato(Set<Contato> contato) {
+        this.contato = contato;
+    }
 }

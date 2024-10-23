@@ -1,11 +1,15 @@
 package com.innerControl.models;
 
 import jakarta.persistence.*;
+import org.springframework.context.annotation.Primary;
 
 import java.util.Set;
 
 @Entity
-@Table(name = "pais")
+@Table(name = "pais",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = {"nome", "sigla"})
+        })
 public class Pais {
 
     @Id
