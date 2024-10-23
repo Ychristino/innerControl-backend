@@ -7,13 +7,16 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
-import java.util.Set;
 
 public class ProdutoForm {
 
     @NotNull
     @NotBlank
     private String nome;
+
+    @NotNull
+    @NotBlank
+    private String descricao;
 
     @NotNull
     @PositiveOrZero
@@ -25,8 +28,8 @@ public class ProdutoForm {
 
     @NotNull
     @NotEmpty
-    private Set<Estoque> estoque;
+    private Estoque estoque;
 
-    public Produto converter() { return new Produto(nome, valorCompra, valorVenda, estoque); }
+    public Produto converter() { return new Produto(nome, descricao, valorCompra, valorVenda); }
 
 }

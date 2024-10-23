@@ -2,18 +2,20 @@ package com.innerControl.models;
 
 import jakarta.persistence.*;
 
-import java.util.Set;
-
 @Entity
+@Table(name = "produto")
 public class Produto {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
     @Column(name = "nome")
     private String nome;
+
+    @Column(name = "descricao")
+    private String descricao;
 
     @Column(name = "valorCompra")
     private float valorCompra;
@@ -21,17 +23,14 @@ public class Produto {
     @Column(name = "valorVenda")
     private float valorVenda;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "estoque_id", referencedColumnName = "id")
-    private Set<Estoque> estoque;
 
     public Produto(){}
 
-    public Produto(String nome, float valorCompra, float valorVenda, Set<Estoque> estoque){
+    public Produto(String nome, String descricao, float valorCompra, float valorVenda){
         this.nome = nome;
+        this.descricao = descricao;
         this.valorCompra = valorCompra;
         this.valorVenda = valorVenda;
-        this.estoque = estoque;
     }
 
     public Long getId() {
@@ -44,6 +43,14 @@ public class Produto {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public float getValorCompra() {

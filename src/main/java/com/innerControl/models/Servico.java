@@ -8,21 +8,37 @@ import java.util.Set;
 public class Servico {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)
     private PessoaFisica pessoaFisicas;
 
-    @OneToMany(mappedBy = "servico", cascade = CascadeType.ALL)
-    private Set<Estoque> estoque;
+    @Column(name = "valorServico")
+    private float valorServico;
+
+    @ManyToMany
+    @JoinTable(name = "servico_produto",
+            joinColumns = @JoinColumn(name = "servico_id"),
+            inverseJoinColumns = @JoinColumn(name = "produto_id")
+    )
+    private Set<Produto> produtos;
 
     public Servico(){}
 
-    public Servico(PessoaFisica pessoaFisica, Set<Estoque> estoque){
+    public Servico(PessoaFisica pessoaFisica, float valorServico, Set<Produto> produtos){
         this.pessoaFisicas = pessoaFisica;
-        this.estoque = estoque;
+        this.valorServico = valorServico;
+        this.produtos = produtos;
+    }
+
+    public float getValorServico() {
+        return valorServico;
+    }
+
+    public void setValorServico(float valorServico) {
+        this.valorServico = valorServico;
     }
 
     public Long getId() {
@@ -37,11 +53,11 @@ public class Servico {
         this.pessoaFisicas = pessoaFisicas;
     }
 
-    public Set<Estoque> getEstoque() {
-        return estoque;
+    public Set<Produto> getProdutos() {
+        return produtos;
     }
 
-    public void setEstoque(Set<Estoque> estoque) {
-        this.estoque = estoque;
+    public void setProdutos(Set<Produto> produtos) {
+        this.produtos = produtos;
     }
 }

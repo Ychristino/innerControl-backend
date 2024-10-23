@@ -12,13 +12,20 @@ import java.util.List;
 @Table(name = "usuario")
 public class Usuario implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String email;
     private String senha;
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Perfil> perfis = new ArrayList<>();
+
+    public Usuario(){}
+    public Usuario(String nome, String email, String senha) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+    }
 
 
     @Override
@@ -31,6 +38,9 @@ public class Usuario implements UserDetails {
         return this.senha;
     }
 
+    public void setPassword(String senha) {
+        this.senha = senha;
+    }
     @Override
     public String getUsername() {
         return this.email;
@@ -66,5 +76,13 @@ public class Usuario implements UserDetails {
 
     public String getEmail() {
         return email;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

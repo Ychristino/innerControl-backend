@@ -2,17 +2,20 @@ package com.innerControl.models;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "estoque")
 public class Estoque {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
     @Column(name = "quantidade")
     private int quantidade;
-    @OneToOne(mappedBy = "estoque")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "produto_id")
     private Produto produto;
 
     @ManyToOne

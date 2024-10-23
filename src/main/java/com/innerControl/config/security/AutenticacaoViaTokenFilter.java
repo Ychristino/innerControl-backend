@@ -2,11 +2,11 @@ package com.innerControl.config.security;
 
 import com.innerControl.models.Usuario;
 import com.innerControl.models.repository.UsuarioRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {

@@ -34,7 +34,6 @@ public class AtualizarPessoaFisicaForm {
     @NotBlank
     @NotEmpty
     private Set<Contato> contato;
-
     public PessoaFisica converter(){
         return new PessoaFisica(nome, cpf, dataNascimento, endereco, contato);
     }
