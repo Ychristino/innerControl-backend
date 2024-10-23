@@ -53,6 +53,16 @@ public class Endereco {
         this.pessoaFisicaSet = pessoaFisicaSet;
     }
 
+    public Endereco(Pais pais, Estado estado, Cidade cidade, String cep, String logradouro, int numero, String complemento) {
+        this.pais = pais;
+        this.estado = estado;
+        this.cidade = cidade;
+        this.cep = cep;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.complemento = complemento;
+    }
+
     public Long getId() {
         return id;
     }

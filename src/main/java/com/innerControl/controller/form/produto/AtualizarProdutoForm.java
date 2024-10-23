@@ -5,7 +5,6 @@ import com.innerControl.models.Produto;
 import com.innerControl.models.repository.ProdutoRepository;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 
@@ -26,9 +25,6 @@ public class AtualizarProdutoForm {
     @PositiveOrZero
     private float valorVenda;
 
-    @NotNull
-    @NotEmpty
-    private Estoque estoque;
     public Produto converter() { return new Produto(nome, descricao, valorCompra, valorVenda); }
 
     public Produto atualizar(Long id, ProdutoRepository produtoRepository){

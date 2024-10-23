@@ -34,6 +34,13 @@ public class Cidade {
         this.enderecoSet = enderecoSet;
         this.nome = nome;
     }
+
+    public Cidade(Pais pais, Estado estado, String nome) {
+        this.pais = pais;
+        this.estado = estado;
+        this.nome = nome;
+    }
+
     public Long getId() {
         return id;
     }

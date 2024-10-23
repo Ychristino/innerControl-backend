@@ -38,6 +38,11 @@ public class Pais {
         this.enderecoSet = enderecoSet;
     }
 
+    public Pais(String nome, String sigla) {
+        this.nome = nome;
+        this.sigla = sigla;
+    }
+
     public Long getId() {
         return id;
     }

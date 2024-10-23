@@ -39,6 +39,12 @@ public class Estado {
         this.enderecoSet = enderecoSet;
     }
 
+    public Estado(Pais pais, String nome, String sigla) {
+        this.pais = pais;
+        this.nome = nome;
+        this.sigla = sigla;
+    }
+
     public Pais getPais() {
         return pais;
     }

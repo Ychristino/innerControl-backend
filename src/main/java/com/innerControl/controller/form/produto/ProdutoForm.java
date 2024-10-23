@@ -26,10 +26,6 @@ public class ProdutoForm {
     @PositiveOrZero
     private float valorVenda;
 
-    @NotNull
-    @NotEmpty
-    private Estoque estoque;
-
     public Produto converter() { return new Produto(nome, descricao, valorCompra, valorVenda); }
 
 }
