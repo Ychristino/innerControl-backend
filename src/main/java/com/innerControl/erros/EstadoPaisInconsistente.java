@@ -1,12 +1,12 @@
 package com.innerControl.erros;
 
-public class ContatoExistente extends RuntimeException {
+public class EstadoPaisInconsistente extends RuntimeException {
 
-    public ContatoExistente(String message){
+    public EstadoPaisInconsistente(String message){
         super(message);
     }
 
-    public ContatoExistente(String message, Throwable cause) {
+    public EstadoPaisInconsistente(String message, Throwable cause) {
         super(message, cause);
     }
 

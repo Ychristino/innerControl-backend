@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name="pessoaFisica")
+@Table(name="pessoa_fisica")
 public class PessoaFisica {
 
     @Id
@@ -14,16 +14,16 @@ public class PessoaFisica {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "nome")
+    @Column(name = "nome", nullable = false)
     private String nome;
 
-    @Column(name = "cpf")
+    @Column(name = "cpf", unique = true, nullable = false)
     private String cpf;
 
-    @Column(name = "dataNascimento")
+    @Column(name = "dataNascimento", nullable = false)
     private Date dataNascimento;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "pessoa_endereco",
             joinColumns = @JoinColumn(name = "pessoaFisica_id"),
@@ -31,7 +31,7 @@ public class PessoaFisica {
     )
     private Set<Endereco> endereco;
 
-    @OneToMany(mappedBy = "pessoaFisica", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "pessoaFisica")
     private Set<Contato> contato;
 
     public PessoaFisica(){}

@@ -1,14 +1,12 @@
 package com.innerControl.erros;
 
-import java.util.function.Supplier;
+public class ContatoExistente extends RuntimeException {
 
-public class PessoaFisicaExistente extends RuntimeException {
-
-    public PessoaFisicaExistente(String message){
+    public ContatoExistente(String message){
         super(message);
     }
 
-    public PessoaFisicaExistente(String message, Throwable cause) {
+    public ContatoExistente(String message, Throwable cause) {
         super(message, cause);
     }
 

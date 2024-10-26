@@ -3,8 +3,10 @@ package com.innerControl.controller;
 import com.innerControl.controller.form.pessoaFisica.AtualizarPessoaFisicaForm;
 import com.innerControl.controller.form.pessoaFisica.PessoaFisicaForm;
 import com.innerControl.dto.pessoaFisica.PessoaFisicaDto;
+import com.innerControl.erros.PessoaFisicaExistente;
 import com.innerControl.models.PessoaFisica;
 import com.innerControl.models.repository.PessoaFisicaRepository;
+import com.innerControl.service.PessoaFisicaService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,31 +29,32 @@ public class PessoaFisicaController {
     @Autowired
     private PessoaFisicaRepository pessoaFisicaRepository;
 
+    @Autowired
+    private PessoaFisicaService pessoaFisicaService;
+
     @GetMapping
     public Page<PessoaFisicaDto> listar(Long id,
                                         @PageableDefault(size = 10, sort = "nome", direction = Sort.Direction.ASC) Pageable paginacao){
-
-        Page<PessoaFisica> pessoasFisicas = pessoaFisicaRepository.findAll(paginacao);
-        return PessoaFisicaDto.converter(pessoasFisicas);
+        return pessoaFisicaService.buscarTodos(paginacao);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<PessoaFisicaDto> detalhes(@PathVariable Long id) {
-        Optional<PessoaFisica> pessoaFisica = pessoaFisicaRepository.findById(id);
-        if (pessoaFisica.isPresent()){
-            return ResponseEntity.ok(new PessoaFisicaDto(pessoaFisica.get()));
+        try {
+            PessoaFisicaDto pessoaFisica = pessoaFisicaService.buscarPessoa(id);
+            return ResponseEntity.ok(pessoaFisica);
         }
-        return ResponseEntity.notFound().build();
+        catch (PessoaFisicaExistente err){
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping
     @Transactional
     public ResponseEntity<PessoaFisicaDto> cadastrar(@RequestBody @Valid PessoaFisicaForm form, UriComponentsBuilder uriBuilder) {
         PessoaFisica pessoaFisica = form.converter();
-        pessoaFisicaRepository.save(pessoaFisica);
-
+        pessoaFisicaService.cadastroPessoa(pessoaFisica);
         URI uri = uriBuilder.path("/pessoa/{id}").buildAndExpand(pessoaFisica.getId()).toUri();
-
         return ResponseEntity.created(uri).body(new PessoaFisicaDto(pessoaFisica));
     }
 
@@ -69,11 +72,7 @@ public class PessoaFisicaController {
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity<?> remover(@PathVariable Long id){
-        Optional<PessoaFisica> opt = pessoaFisicaRepository.findById(id);
-        if (opt.isPresent()) {
-            pessoaFisicaRepository.deleteById(id);
-            return ResponseEntity.ok().build();
-        }
-        return ResponseEntity.notFound().build();
+        if (pessoaFisicaService.removerPessoa(id)) return ResponseEntity.ok().build();
+        else return ResponseEntity.notFound().build();
     }
 }

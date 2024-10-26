@@ -14,7 +14,7 @@ public class Contato {
     @Enumerated(EnumType.STRING)
     private TipoContato tipoContato;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "pessoaFisica_id", nullable = false)
     private PessoaFisica pessoaFisica;
 
