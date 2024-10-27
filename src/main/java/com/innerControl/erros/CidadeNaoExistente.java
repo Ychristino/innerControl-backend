@@ -1,12 +1,12 @@
 package com.innerControl.erros;
 
-public class EstadoNaoExistente extends RuntimeException {
+public class CidadeNaoExistente extends RuntimeException {
 
-    public EstadoNaoExistente(String message){
+    public CidadeNaoExistente(String message){
         super(message);
     }
 
-    public EstadoNaoExistente(String message, Throwable cause) {
+    public CidadeNaoExistente(String message, Throwable cause) {
         super(message, cause);
     }
 

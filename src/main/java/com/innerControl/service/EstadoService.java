@@ -12,9 +12,9 @@ public class EstadoService {
     @Autowired
     private EstadoRepository estadoRepository;
 
-    public EstadoDto buscarEstado(Long id){
+    public Estado buscarEstado(Long id){
         Estado estado = estadoRepository.findById(id)
                 .orElseThrow(()-> new EstadoNaoExistente("Estado não encontrado."));
-        return new EstadoDto(estado);
+        return estado;
     }
 }

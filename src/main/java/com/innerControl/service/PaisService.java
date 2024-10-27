@@ -12,9 +12,9 @@ public class PaisService {
     @Autowired
     private PaisRepository paisRepository;
 
-    public PaisDto buscarPais(Long id){
+    public Pais buscarPais(Long id){
         Pais pais = paisRepository.findById(id)
                 .orElseThrow(()-> new PaisNaoExistente("País não encontrado."));
-        return new PaisDto(pais);
+        return pais;
     }
 }

@@ -10,7 +10,6 @@ import com.innerControl.service.PessoaFisicaService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -41,7 +40,7 @@ public class PessoaFisicaController {
     @GetMapping("/{id}")
     public ResponseEntity<PessoaFisicaDto> detalhes(@PathVariable Long id) {
         try {
-            PessoaFisicaDto pessoaFisica = pessoaFisicaService.buscarPessoa(id);
+            PessoaFisicaDto pessoaFisica = new PessoaFisicaDto(pessoaFisicaService.buscarPessoa(id));
             return ResponseEntity.ok(pessoaFisica);
         }
         catch (PessoaFisicaExistente err){

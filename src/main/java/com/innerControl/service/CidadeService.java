@@ -1,20 +1,21 @@
 package com.innerControl.service;
 
-import com.innerControl.dto.estado.EstadoDto;
 import com.innerControl.erros.EstadoNaoExistente;
+import com.innerControl.models.Cidade;
 import com.innerControl.models.Estado;
+import com.innerControl.models.repository.CidadeRepository;
 import com.innerControl.models.repository.EstadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class EstadoService {
+public class CidadeService {
     @Autowired
-    private EstadoRepository estadoRepository;
+    private CidadeRepository cidadeRepository;
 
-    public Estado buscarEstado(Long id){
-        Estado estado = estadoRepository.findById(id)
-                .orElseThrow(()-> new EstadoNaoExistente("Estado não encontrado."));
-        return estado;
+    public Cidade buscarCidade(Long id){
+        Cidade cidade = cidadeRepository.findById(id)
+                .orElseThrow(()-> new EstadoNaoExistente("Cidade não encontrado."));
+        return cidade;
     }
 }

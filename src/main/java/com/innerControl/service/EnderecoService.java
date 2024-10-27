@@ -32,10 +32,10 @@ public class EnderecoService {
             throw new EstadoPaisInconsistente("País do estado não condiz com o local informado.");
 
         try {
-            EstadoDto estado = estadoService.buscarEstado(endereco.getEstado().getId());
-            PaisDto pais = paisService.buscarPais(estado.getPais().getId());
+            EstadoDto estado = new EstadoDto(estadoService.buscarEstado(endereco.getEstado().getId()));
+            PaisDto pais = new PaisDto(paisService.buscarPais(estado.getPais().getId()));
         }
-        catch (PaisNaoExistente  | EstadoNaoExistente err){
+        catch (PaisNaoExistente | EstadoNaoExistente err){
             throw new InsercaoDadoErro("Erro ao encontrar Estado/País.");
         }
 

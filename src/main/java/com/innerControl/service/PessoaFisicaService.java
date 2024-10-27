@@ -31,26 +31,6 @@ public class PessoaFisicaService {
                     throw new PessoaFisicaExistente("CPF já existente.");
                 });
 
-        Set<Contato> listaContatos = pessoaFisica.getContato().stream().map(contatoDto -> {
-            Contato contato = new Contato(contatoDto.getTipoContato(),
-                    contatoDto.getPessoaFisica(),
-                    contatoDto.getContato());
-            return contatoService.cadastroContato(contato, pessoaFisica);
-        }).collect(Collectors.toSet());
-        pessoaFisica.setContato(listaContatos);
-
-        Set<Endereco> listaEnderecos = pessoaFisica.getEndereco().stream().map(enderecoDto ->{
-            Endereco endereco = new Endereco(enderecoDto.getPais(),
-                    enderecoDto.getEstado(),
-                    enderecoDto.getCidade(),
-                    enderecoDto.getCep(),
-                    enderecoDto.getLogradouro(),
-                    enderecoDto.getNumero(),
-                    enderecoDto.getComplemento());
-            return enderecoService.cadastroEndereco(endereco);
-        }).collect(Collectors.toSet());
-        pessoaFisica.setEndereco(listaEnderecos);
-
         pessoaFisicaRepository.save(pessoaFisica);
         return new PessoaFisicaDto(pessoaFisica);
     }
@@ -59,10 +39,10 @@ public class PessoaFisicaService {
         return PessoaFisicaDto.converter(pessoaFisicaRepository.findAll(paginacao));
     }
 
-    public PessoaFisicaDto buscarPessoa(Long id) {
+    public PessoaFisica buscarPessoa(Long id) {
         PessoaFisica pessoaFisica = pessoaFisicaRepository.findById(id)
                 .orElseThrow(()-> new PessoaFisicaExistente("Pessoa não encontrado."));
-        return  new PessoaFisicaDto(pessoaFisica);
+        return pessoaFisica;
     }
 
     public boolean removerPessoa(Long id){
