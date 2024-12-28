@@ -35,7 +35,7 @@ public class CidadeService {
         }
 
         // Processar Estado
-        Estado estado = estadoService.criar(cidadeForm.getEstado(), pais);
+        Estado estado = estadoService.criar(cidadeForm.getEstado());
 
         // Processar Cidade
         Cidade cidade = cidadeRepository.findByNomeAndEstado(
@@ -69,7 +69,7 @@ public class CidadeService {
         }
 
         // Processar Estado
-        Estado estado = estadoService.atualizar(cidadeForm.getEstado(), pais);
+        Estado estado = estadoService.atualizar(cidadeForm.getEstado());
 
         // Processar Cidade (ou atualizar se já existir)
         Cidade cidade = cidadeRepository.findByNomeAndEstado(

@@ -14,9 +14,12 @@ import org.springframework.stereotype.Service;
 public class EstadoService {
     @Autowired
     private EstadoRepository estadoRepository;
-
+    @Autowired
+    private PaisService paisService;
     @Transactional
-    public Estado criar(EstadoForm estadoForm, Pais pais){
+    public Estado criar(EstadoForm estadoForm){
+
+        Pais pais = paisService.criar(estadoForm.getPais());
 
         Estado estado = estadoRepository.findByNomeAndSiglaAndPais(
                 estadoForm.getNome(),
@@ -41,7 +44,9 @@ public class EstadoService {
     }
 
     @Transactional
-    public Estado atualizar(EstadoUpdateForm estadoForm, Pais pais){
+    public Estado atualizar(EstadoUpdateForm estadoForm){
+
+        Pais pais = paisService.atualizar(estadoForm.getPais());
 
         Estado estado = estadoRepository.findByNomeAndSiglaAndPais(
                 estadoForm.getNome(),

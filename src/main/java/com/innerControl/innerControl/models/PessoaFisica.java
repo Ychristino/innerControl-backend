@@ -37,7 +37,7 @@ public class PessoaFisica {
         if (Validador.validarCpf(cpf))
             this.cpf = cpf;
         else
-            throw new RuntimeException("O CPF informado não é válido...");
+            throw new IllegalArgumentException("CPF informado não é válido!");
     }
 
     public Date getDataNascimento() {

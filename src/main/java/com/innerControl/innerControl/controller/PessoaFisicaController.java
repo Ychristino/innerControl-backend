@@ -5,6 +5,7 @@ import com.innerControl.innerControl.controller.form.pessoaFisica.PessoaFisicaFo
 import com.innerControl.innerControl.controller.form.pessoaFisica.PessoaFisicaUpdateForm;
 import com.innerControl.innerControl.models.PessoaFisica;
 import com.innerControl.innerControl.service.PessoaFisicaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -16,35 +17,27 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/pessoas")
 public class PessoaFisicaController {
-    private final PessoaFisicaService pessoaFisicaService;
-
-    public PessoaFisicaController(PessoaFisicaService pessoaFisicaService) {
-        this.pessoaFisicaService = pessoaFisicaService;
-    }
+    @Autowired
+    private PessoaFisicaService pessoaFisicaService;
 
     @GetMapping
     public List<PessoaFisicaDTO> listarTodos() {
         return pessoaFisicaService.listarTodos().stream()
-                .map(pessoaFisica -> new PessoaFisicaDTO().toDTO(pessoaFisica))
+                .map(pessoaFisica -> PessoaFisicaDTO.toDTO(pessoaFisica))
                 .collect(Collectors.toList());
     }
 
     @PostMapping
     public ResponseEntity<PessoaFisicaDTO> salvar(@RequestBody PessoaFisicaForm form, UriComponentsBuilder uriBuilder) {
-        PessoaFisica newPessoaFisica = pessoaFisicaService.salvar(form);
+        PessoaFisica newPessoaFisica = pessoaFisicaService.criar(form);
         URI uri = uriBuilder.path("/pessoa/{id}").buildAndExpand(newPessoaFisica.getId()).toUri();
-        return ResponseEntity.created(uri).body(new PessoaFisicaDTO().toDTO(newPessoaFisica));
+        return ResponseEntity.created(uri).body(PessoaFisicaDTO.toDTO(newPessoaFisica));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<PessoaFisicaDTO> alterar(@PathVariable Long id, @RequestBody PessoaFisicaUpdateForm form, UriComponentsBuilder uriBuilder) {
-        try {
-            PessoaFisica updatedPessoaFisica = pessoaFisicaService.atualizar(id, form);
-            return ResponseEntity.ok(new PessoaFisicaDTO().toDTO(updatedPessoaFisica));
-        }
-        catch (RuntimeException err){
-            return ResponseEntity.notFound().build();
-        }
+        PessoaFisica updatedPessoaFisica = pessoaFisicaService.atualizar(id, form);
+        return ResponseEntity.ok(PessoaFisicaDTO.toDTO(updatedPessoaFisica));
     }
 
     @DeleteMapping("/{id}")

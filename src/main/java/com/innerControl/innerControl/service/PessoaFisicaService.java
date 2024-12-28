@@ -30,9 +30,9 @@ public class PessoaFisicaService {
     }
 
     @Transactional
-    public PessoaFisica salvar(PessoaFisicaForm form) {
+    public PessoaFisica criar(PessoaFisicaForm form) {
         pessoaFisicaRepository.findByCpf(form.getCpf()).ifPresent(pessoaFisica -> {
-            throw new RuntimeException("Já existe CPF na base...");
+            throw new RuntimeException("CPF já existente na base!");
         });
         PessoaFisica pessoaFisica = new PessoaFisica();
         pessoaFisica.setNome(form.getNome());
@@ -47,9 +47,7 @@ public class PessoaFisicaService {
     @Transactional
     public PessoaFisica atualizar(Long id, PessoaFisicaUpdateForm form) {
         PessoaFisica pessoaFisica = pessoaFisicaRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Pessoa Física não encontrada"));
-        if (id != form.getId())
-            throw new IllegalArgumentException("ID de atualização da pessoa incorreto...");
+                .orElseThrow(() -> new IllegalArgumentException("Pessoa Física não encontrada!"));
 
         // Atualizar os dados principais
         pessoaFisica.setNome(form.getNome());
@@ -64,7 +62,14 @@ public class PessoaFisicaService {
         // Salvar Pessoa Física
         return pessoaFisicaRepository.save(pessoaFisica);
     }
+    @Transactional
     public void excluir(Long id) {
         pessoaFisicaRepository.deleteById(id);
+    }
+
+    public PessoaFisica buscarPorId(Long id) {
+        PessoaFisica pessoaFisica = pessoaFisicaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Pessoa Física não encontrada!"));
+        return pessoaFisica;
     }
 }
