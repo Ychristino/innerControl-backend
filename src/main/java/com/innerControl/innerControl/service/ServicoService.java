@@ -3,6 +3,7 @@ package com.innerControl.innerControl.service;
 import com.innerControl.innerControl.controller.form.servico.ServicoForm;
 import com.innerControl.innerControl.controller.form.servico.ServicoUpdateForm;
 import com.innerControl.innerControl.models.PessoaFisica;
+import com.innerControl.innerControl.models.Produto;
 import com.innerControl.innerControl.models.Servico;
 import com.innerControl.innerControl.models.repository.ServicoRepository;
 import jakarta.transaction.Transactional;
@@ -59,4 +60,9 @@ public class ServicoService {
         servicoRepository.deleteById(id);
     }
 
+    public Servico buscarPorId(Long id){
+        Servico servico = servicoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Serviço não encontrado!"));
+        return servico;
+    }
 }

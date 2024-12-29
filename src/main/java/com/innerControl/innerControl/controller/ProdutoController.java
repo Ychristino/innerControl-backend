@@ -28,6 +28,11 @@ public class ProdutoController {
                 .collect(Collectors.toList());
     }
 
+    @GetMapping("/{id}")
+    public ProdutoDTO detalhes(@PathVariable Long id) {
+        return ProdutoDTO.toDTO(produtoService.buscarPorId(id));
+    }
+
     @PostMapping
     public ResponseEntity<ProdutoDTO> salvar(@RequestBody ProdutoForm form, UriComponentsBuilder uriBuilder) {
         Produto newProduto = produtoService.criar(form);

@@ -33,6 +33,11 @@ public class ServicoController {
                 .collect(Collectors.toList());
     }
 
+    @GetMapping("/{id}")
+    public ServicoDTO detalhes(@PathVariable Long id) {
+        return ServicoDTO.toDTO(servicoService.buscarPorId(id));
+    }
+
     @PostMapping
     public ResponseEntity<ServicoDTO> salvar(@RequestBody ServicoForm form, UriComponentsBuilder uriBuilder) {
         Servico newServico = servicoService.criar(form);

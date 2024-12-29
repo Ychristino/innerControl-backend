@@ -1,5 +1,6 @@
 package com.innerControl.innerControl.controller;
 
+import com.innerControl.innerControl.controller.dto.EstoqueDTO;
 import com.innerControl.innerControl.controller.dto.PessoaFisicaDTO;
 import com.innerControl.innerControl.controller.form.pessoaFisica.PessoaFisicaForm;
 import com.innerControl.innerControl.controller.form.pessoaFisica.PessoaFisicaUpdateForm;
@@ -25,6 +26,11 @@ public class PessoaFisicaController {
         return pessoaFisicaService.listarTodos().stream()
                 .map(pessoaFisica -> PessoaFisicaDTO.toDTO(pessoaFisica))
                 .collect(Collectors.toList());
+    }
+
+    @GetMapping("/{id}")
+    public PessoaFisicaDTO detalhes(@PathVariable Long id) {
+        return PessoaFisicaDTO.toDTO(pessoaFisicaService.buscarPorId(id));
     }
 
     @PostMapping

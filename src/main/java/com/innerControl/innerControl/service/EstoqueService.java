@@ -1,11 +1,8 @@
 package com.innerControl.innerControl.service;
 
-import com.innerControl.innerControl.controller.form.estoque.EstoqueForm;
-import com.innerControl.innerControl.controller.form.estoque.EstoqueUpdateForm;
 import com.innerControl.innerControl.models.Estoque;
 import com.innerControl.innerControl.models.Produto;
 import com.innerControl.innerControl.models.repository.EstoqueRepository;
-import com.innerControl.innerControl.models.repository.ProdutoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,7 +52,7 @@ public class EstoqueService {
         return estoqueRepository.findAll();
     }
 
-    public Estoque buscarProduto(Long id) {
+    public Estoque buscarEstoquePorProdutoId(Long id) {
         Estoque estoque = estoqueRepository.findByProdutoId(id)
                 .orElseThrow(() -> new RuntimeException("Produto não encontrado no estoque!"));
         return estoque;

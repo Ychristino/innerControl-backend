@@ -62,7 +62,7 @@ public class ProdutoService {
         return produtoRepository.save(produto);
     }
 
-    public Produto buscarProduto(Long id){
+    public Produto buscarPorId(Long id){
         Produto produto = produtoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Produto não encontrado!"));
         return produto;

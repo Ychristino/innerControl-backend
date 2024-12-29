@@ -2,7 +2,6 @@ package com.innerControl.innerControl.service;
 
 import com.innerControl.innerControl.controller.form.servicoProduto.ServicoProdutoForm;
 import com.innerControl.innerControl.controller.form.servicoProduto.ServicoProdutoUpdateForm;
-import com.innerControl.innerControl.models.Produto;
 import com.innerControl.innerControl.models.Servico;
 import com.innerControl.innerControl.models.ServicoProduto;
 import com.innerControl.innerControl.models.repository.ServicoProdutoRepository;
@@ -32,7 +31,7 @@ public class ServicoProdutoService {
             estoqueService.vender(item.getIdProduto(), item.getQuantidade());
 
             ServicoProduto newServicoProduto = new ServicoProduto();
-            newServicoProduto.setProduto(produtoService.buscarProduto(item.getIdProduto()));
+            newServicoProduto.setProduto(produtoService.buscarPorId(item.getIdProduto()));
             newServicoProduto.setQuantidade(item.getQuantidade());
             newServicoProduto.setServico(servico);
 
@@ -72,7 +71,7 @@ public class ServicoProdutoService {
                 estoqueService.vender(item.getIdProduto(), item.getQuantidade());
                 servicoProduto = new ServicoProduto();
                 servicoProduto.setServico(servico);
-                servicoProduto.setProduto(produtoService.buscarProduto(item.getIdProduto()));
+                servicoProduto.setProduto(produtoService.buscarPorId(item.getIdProduto()));
             }
             // SE ESTIVER ATUALIZANDO UM ITEM JÁ EXISTENTE
             else {

@@ -26,6 +26,11 @@ public class EstoqueController {
                 .collect(Collectors.toList());
     }
 
+    @GetMapping("/{id}")
+    public EstoqueDTO detalhes(@PathVariable Long id) {
+        return EstoqueDTO.toDTO(estoqueService.buscarEstoquePorProdutoId(id));
+    }
+
     @PutMapping("/comprar/{id}")
     public ResponseEntity<EstoqueDTO> comprar(@PathVariable Long id, @RequestBody EstoqueUpdateForm form, UriComponentsBuilder uriBuilder) {
         Estoque updatedEstoque = estoqueService.comprar(id, form.getQuantidade());
