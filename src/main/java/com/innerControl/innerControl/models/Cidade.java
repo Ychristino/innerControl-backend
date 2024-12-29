@@ -31,7 +31,7 @@ public class Cidade {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome = nome.trim().toUpperCase();
     }
 
     public Estado getEstado() {

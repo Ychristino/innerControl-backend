@@ -57,7 +57,7 @@ public class PessoaFisica {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome = nome.trim().toUpperCase();;
     }
 
     public void setEnderecos(List<Endereco> enderecos) {

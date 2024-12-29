@@ -36,4 +36,26 @@ public class Validador {
             return false;
         }
     }
+
+    public static boolean validarEmail(String email) {
+        String emailRegex = "^[\\w._%+-]+@[\\w.-]+\\.[a-zA-Z]{2,}$";
+        return email.matches(emailRegex);
+    }
+
+    public static boolean validarTelefone(String telefone) {
+        String somenteDigitos = telefone.replaceAll("\\D", "");
+
+        if (somenteDigitos.length() != 11) {
+            throw new IllegalArgumentException("O telefone deve possuir o formato (DD) 9 9999-9999!");
+        }
+        else return true;
+    }
+
+    public static boolean validarCEP(String cep){
+        String somenteDigitos = cep.replaceAll("\\D", "");
+        if (somenteDigitos.length() != 8) {
+            throw new IllegalArgumentException("CEP Inválido!");
+        }
+        else return true;
+    }
 }

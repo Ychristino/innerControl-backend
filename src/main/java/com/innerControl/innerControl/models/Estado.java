@@ -29,7 +29,7 @@ public class Estado {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome = nome.trim().toUpperCase();;
     }
 
     public String getSigla() {
@@ -37,7 +37,7 @@ public class Estado {
     }
 
     public void setSigla(String sigla) {
-        this.sigla = sigla;
+        this.sigla = sigla.trim().toUpperCase();;
     }
 
     public Pais getPais() {

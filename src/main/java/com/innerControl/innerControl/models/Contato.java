@@ -1,6 +1,7 @@
 package com.innerControl.innerControl.models;
 
 import com.innerControl.innerControl.utils.ContatoEnum;
+import com.innerControl.innerControl.utils.Validador;
 import jakarta.persistence.*;
 
 @Entity
@@ -8,7 +9,7 @@ public class Contato {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private ContatoEnum tipo; // Ex: Telefone, Email
+    private ContatoEnum tipo;
     private String valor;
 
     @ManyToOne
@@ -34,7 +35,15 @@ public class Contato {
     }
 
     public void setValor(String valor) {
-        this.valor = valor;
+        if (this.tipo == ContatoEnum.EMAIL){
+            if (Validador.validarEmail(valor))
+                this.valor = valor.trim().toUpperCase();;
+        }
+        else if (this.tipo == ContatoEnum.TELEFONE){
+            if (Validador.validarTelefone(valor))
+                // SALVA APENAS OS NUMEROS, SEM CARACTERES ESPECIAIS
+                this.valor = valor.replaceAll("\\D", "");;
+        }
     }
 
     public PessoaFisica getPessoaFisica() {

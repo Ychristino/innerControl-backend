@@ -29,7 +29,7 @@ public class Produto {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome = nome.trim().toUpperCase();;
     }
 
     public String getDescricao() {

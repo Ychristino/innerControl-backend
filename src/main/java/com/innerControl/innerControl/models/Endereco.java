@@ -1,5 +1,6 @@
 package com.innerControl.innerControl.models;
 
+import com.innerControl.innerControl.utils.Validador;
 import jakarta.persistence.*;
 
 @Entity
@@ -31,7 +32,7 @@ public class Endereco {
     }
 
     public void setLogradouro(String logradouro) {
-        this.logradouro = logradouro;
+        this.logradouro = logradouro.trim().toUpperCase();;
     }
 
     public String getNumero() {
@@ -47,7 +48,8 @@ public class Endereco {
     }
 
     public void setCep(String cep) {
-        this.cep = cep;
+        if (Validador.validarCEP(cep))
+            this.cep = cep;
     }
 
     public String getComplemento() {
@@ -55,7 +57,7 @@ public class Endereco {
     }
 
     public void setComplemento(String complemento) {
-        this.complemento = complemento;
+        this.complemento = complemento.trim().toUpperCase();;
     }
 
     public Cidade getCidade() {

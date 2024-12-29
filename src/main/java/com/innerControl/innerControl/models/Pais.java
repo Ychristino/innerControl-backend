@@ -29,7 +29,7 @@ public class Pais {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome = nome.trim().toUpperCase();;
     }
 
     public String getSigla() {
@@ -37,6 +37,6 @@ public class Pais {
     }
 
     public void setSigla(String sigla) {
-        this.sigla = sigla;
+        this.sigla = sigla.trim().toUpperCase();;
     }
 }
