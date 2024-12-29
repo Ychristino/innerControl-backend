@@ -26,7 +26,7 @@ public class ServicoProdutoService {
 
         List<ServicoProduto> produtosUtilizados = listaProdutos.stream().map(item ->{
             if (item.getQuantidade() <= 0)
-                throw new IllegalArgumentException("Quantidade de itens deve ser maior que zero");
+                throw new IllegalArgumentException("Quantidade de itens deve ser maior que zero!");
 
             estoqueService.vender(item.getIdProduto(), item.getQuantidade());
 
@@ -48,7 +48,7 @@ public class ServicoProdutoService {
 
         List<ServicoProduto> novosProdutosUtilizados = listaProdutos.stream().map(item ->{
             if (item.getQuantidade() <= 0)
-                throw new IllegalArgumentException("Quantidade de itens deve ser maior que zero");
+                throw new IllegalArgumentException("Quantidade de itens deve ser maior que zero!");
 
             ServicoProduto servicoProduto = null;
 
