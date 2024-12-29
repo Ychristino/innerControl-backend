@@ -1,15 +1,19 @@
 package com.innerControl.innerControl.controller;
 
 import com.innerControl.innerControl.controller.dto.EstoqueDTO;
+import com.innerControl.innerControl.controller.dto.PessoaFisicaDTO;
 import com.innerControl.innerControl.controller.form.estoque.EstoqueUpdateForm;
 import com.innerControl.innerControl.models.Estoque;
 import com.innerControl.innerControl.service.EstoqueService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
@@ -20,10 +24,9 @@ public class EstoqueController {
     private EstoqueService estoqueService;
 
     @GetMapping
-    public List<EstoqueDTO> listarTodos() {
-        return estoqueService.listarEstoque().stream()
-                .map(item -> EstoqueDTO.toDTO(item))
-                .collect(Collectors.toList());
+    public Page<EstoqueDTO> listarTodos(@PageableDefault(sort = "id", size = 10, direction = Sort.Direction.DESC) Pageable paginacao) {
+        return estoqueService.listarEstoque(paginacao)
+                .map(EstoqueDTO::toDTO);
     }
 
     @GetMapping("/{id}")

@@ -6,13 +6,15 @@ import com.innerControl.innerControl.controller.form.produto.ProdutoUpdateForm;
 import com.innerControl.innerControl.models.Produto;
 import com.innerControl.innerControl.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/produtos")
@@ -22,10 +24,9 @@ public class ProdutoController {
     private ProdutoService produtoService;
 
     @GetMapping
-    public List<ProdutoDTO> listarTodos() {
-        return produtoService.listarProdutos().stream()
-                .map(produto -> ProdutoDTO.toDTO(produto))
-                .collect(Collectors.toList());
+    public Page<ProdutoDTO> listarTodos(@PageableDefault(sort = "id", size = 10, direction = Sort.Direction.DESC) Pageable paginacao) {
+        return produtoService.listarProdutos(paginacao)
+                .map(ProdutoDTO::toDTO);
     }
 
     @GetMapping("/{id}")

@@ -6,6 +6,8 @@ import com.innerControl.innerControl.models.Produto;
 import com.innerControl.innerControl.models.repository.ProdutoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -67,6 +69,11 @@ public class ProdutoService {
                 .orElseThrow(() -> new RuntimeException("Produto não encontrado!"));
         return produto;
     }
+
+    public Page<Produto> listarProdutos(Pageable pageable) {
+        return produtoRepository.findAll(pageable);
+    }
+
     public List<Produto> listarProdutos() {
         return produtoRepository.findAll();
     }

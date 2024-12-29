@@ -6,6 +6,8 @@ import com.innerControl.innerControl.models.PessoaFisica;
 import com.innerControl.innerControl.models.repository.PessoaFisicaRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +25,10 @@ public class PessoaFisicaService {
 
     public PessoaFisicaService(PessoaFisicaRepository pessoaRepository) {
         this.pessoaFisicaRepository = pessoaRepository;
+    }
+
+    public Page<PessoaFisica> listarTodos(Pageable pageable) {
+        return pessoaFisicaRepository.findAll(pageable);
     }
 
     public List<PessoaFisica> listarTodos() {

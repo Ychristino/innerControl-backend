@@ -2,11 +2,16 @@ package com.innerControl.innerControl.controller;
 
 import com.innerControl.innerControl.controller.dto.EstoqueDTO;
 import com.innerControl.innerControl.controller.dto.PessoaFisicaDTO;
+import com.innerControl.innerControl.controller.dto.ProdutoDTO;
 import com.innerControl.innerControl.controller.form.pessoaFisica.PessoaFisicaForm;
 import com.innerControl.innerControl.controller.form.pessoaFisica.PessoaFisicaUpdateForm;
 import com.innerControl.innerControl.models.PessoaFisica;
 import com.innerControl.innerControl.service.PessoaFisicaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -22,10 +27,9 @@ public class PessoaFisicaController {
     private PessoaFisicaService pessoaFisicaService;
 
     @GetMapping
-    public List<PessoaFisicaDTO> listarTodos() {
-        return pessoaFisicaService.listarTodos().stream()
-                .map(pessoaFisica -> PessoaFisicaDTO.toDTO(pessoaFisica))
-                .collect(Collectors.toList());
+    public Page<PessoaFisicaDTO> listarTodos(@PageableDefault(sort = "nome", size = 10, direction = Sort.Direction.ASC) Pageable paginacao) {
+        return pessoaFisicaService.listarTodos(paginacao)
+                .map(PessoaFisicaDTO::toDTO);
     }
 
     @GetMapping("/{id}")

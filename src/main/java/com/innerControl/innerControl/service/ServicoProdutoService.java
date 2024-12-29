@@ -60,9 +60,9 @@ public class ServicoProdutoService {
             // SE INFORMAR, ACESSA O DADO PARA ATUALIZAR OS DADOS...
             // PARA REDUNDANCIA, CASO O ID ESTEJA INCORRETO, BUSCA O ID DO PRODUTO
             else
-                servicoProduto = servicoProdutoRepository.findById(item.getId())
+                servicoProduto = servicoProdutoRepository.findByIdAndServicoId(item.getId(), servico.getId())
                         .orElse(
-                                servicoProdutoRepository.findByProdutoId(item.getIdProduto())
+                                servicoProdutoRepository.findByServicoIdAndProdutoId(servico.getId(), item.getIdProduto())
                                 .orElse(null)
                         );
 

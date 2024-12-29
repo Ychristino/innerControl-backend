@@ -2,6 +2,7 @@ package com.innerControl.innerControl.models;
 
 import jakarta.persistence.*;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -13,6 +14,8 @@ public class Servico {
 
     private String descricao;
 
+    private Date dataEntrada;
+    private Date dataEntrega;
     @ManyToOne
     @JoinColumn(name = "pessoa_fisica_id", nullable = false)
     private PessoaFisica pessoa;
@@ -37,6 +40,22 @@ public class Servico {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public Date getDataEntrada() {
+        return dataEntrada;
+    }
+
+    public void setDataEntrada(Date dataEntrada) {
+        this.dataEntrada = dataEntrada;
+    }
+
+    public Date getDataEntrega() {
+        return dataEntrega;
+    }
+
+    public void setDataEntrega(Date dataEntrega) {
+        this.dataEntrega = dataEntrega;
     }
 
     public PessoaFisica getPessoa() {

@@ -5,6 +5,8 @@ import com.innerControl.innerControl.models.Produto;
 import com.innerControl.innerControl.models.repository.EstoqueRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,6 +48,10 @@ public class EstoqueService {
         Estoque estoque = estoqueRepository.findByProdutoId(id).orElseThrow(() -> new RuntimeException("Produto não encontrado no estoque!"));
         estoque.venderItens(quantidade);
         return estoqueRepository.save(estoque);
+    }
+
+    public Page<Estoque> listarEstoque(Pageable pageable) {
+        return estoqueRepository.findAll(pageable);
     }
 
     public List<Estoque> listarEstoque() {
