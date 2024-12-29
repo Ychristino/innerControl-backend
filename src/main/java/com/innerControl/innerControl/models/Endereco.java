@@ -49,7 +49,7 @@ public class Endereco {
 
     public void setCep(String cep) {
         if (Validador.validarCEP(cep))
-            this.cep = cep;
+            this.cep = cep.replaceAll("\\D", "");;
     }
 
     public String getComplemento() {
