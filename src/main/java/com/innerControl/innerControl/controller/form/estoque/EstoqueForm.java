@@ -1,9 +1,11 @@
 package com.innerControl.innerControl.controller.form.estoque;
 
 import com.innerControl.innerControl.controller.form.produto.ProdutoForm;
+import jakarta.validation.constraints.PositiveOrZero;
 
 public class EstoqueForm {
     private ProdutoForm produto;
+    @PositiveOrZero(message = "Quantidade inicial não pode ser negativa!")
     private Integer quantidadeInicial;
 
     // Construtores

@@ -1,10 +1,14 @@
 package com.innerControl.innerControl.controller.form.contato;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 public class ContatoUpdateForm {
     private Long id;
     private String tipo;
+    @NotNull(message = "Valor do contato deve ser informado!")
+    @NotEmpty(message = "Valor do contato deve ser informado!")
     private String valor;
-
     // Getters e Setters
     public Long getId() {
         return id;

@@ -6,6 +6,8 @@ import com.innerControl.innerControl.controller.form.servicoProduto.ServicoProdu
 import com.innerControl.innerControl.models.Servico;
 import com.innerControl.innerControl.service.PessoaFisicaService;
 import com.innerControl.innerControl.service.ProdutoService;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -14,8 +16,14 @@ import java.util.List;
 public class ServicoUpdateForm {
     private Long id;
     private String descricao;
+    @NotNull(message = "Data de entrada deve ser informada!")
     private Date dataEntrada;
+    @NotNull(message = "Data de entrega deve ser informada!")
     private Date dataEntrega;
+    @NotNull(message = "O serviço deve ser atribuiído a uma pessoa!")
+    private Long pessoaId;
+    @NotNull(message = "Valor do serviço deve ser informado!")
+    @Positive(message = "Valor do serviçõ deve ser positivo!")
     private BigDecimal valor;
     private List<ServicoProdutoUpdateForm> produtosUtilizados;
 

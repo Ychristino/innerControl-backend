@@ -3,14 +3,23 @@ package com.innerControl.innerControl.controller.form.pessoaFisica;
 import com.innerControl.innerControl.controller.form.contato.ContatoUpdateForm;
 import com.innerControl.innerControl.controller.form.endereco.EnderecoUpdateForm;
 import com.innerControl.innerControl.models.PessoaFisica;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 
 import java.util.Date;
 import java.util.List;
 
 public class PessoaFisicaUpdateForm {
     private Long id;
+    @NotNull(message = "Nome da pessoa deve ser informado!")
+    @NotEmpty(message = "Nome da pessoa deve ser informado!")
     private String nome;
+    @NotNull(message = "CPF deve ser informado!")
+    @NotEmpty(message = "CPF deve ser informado!")
     private String cpf;
+    @NotNull(message = "Data de nascimento deve ser informada!")
+    @Past(message = "Data de nascimento não pode ser futura!")
     private Date dataNascimento;
     private List<EnderecoUpdateForm> enderecos;
     private List<ContatoUpdateForm> contatos;

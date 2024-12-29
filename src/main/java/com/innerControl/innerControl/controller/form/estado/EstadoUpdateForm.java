@@ -1,10 +1,16 @@
 package com.innerControl.innerControl.controller.form.estado;
 
 import com.innerControl.innerControl.controller.form.pais.PaisUpdateForm;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 public class EstadoUpdateForm {
     private Long id;
+    @NotNull(message = "Nome do estado deve ser informado!")
+    @NotEmpty(message = "Nome do estado deve ser informado!")
     private String nome;
+    @NotNull(message = "Sigla do estado deve ser informada!")
+    @NotEmpty(message = "Sigla do estado deve ser informada!")
     private String sigla;
     private PaisUpdateForm pais;
 

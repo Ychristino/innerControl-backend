@@ -1,9 +1,13 @@
 package com.innerControl.innerControl.controller.form.endereco;
 
 import com.innerControl.innerControl.controller.form.cidade.CidadeUpdateForm;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 public class EnderecoUpdateForm {
     private Long id;
+    @NotNull(message = "Logradouro deve ser informado!")
+    @NotEmpty(message = "Logradouro deve ser informado!")
     private String logradouro;
     private String numero;
     private String complemento;

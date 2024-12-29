@@ -5,6 +5,7 @@ import com.innerControl.innerControl.controller.form.servico.ServicoForm;
 import com.innerControl.innerControl.controller.form.servico.ServicoUpdateForm;
 import com.innerControl.innerControl.models.Servico;
 import com.innerControl.innerControl.service.ServicoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,14 +35,14 @@ public class ServicoController {
     }
 
     @PostMapping
-    public ResponseEntity<ServicoDTO> salvar(@RequestBody ServicoForm form, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<ServicoDTO> salvar(@RequestBody @Valid ServicoForm form, UriComponentsBuilder uriBuilder) {
         Servico newServico = servicoService.criar(form);
         URI uri = uriBuilder.path("/servicos/{id}").buildAndExpand(newServico.getId()).toUri();
         return ResponseEntity.created(uri).body(ServicoDTO.toDTO(newServico));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ServicoDTO> alterar(@PathVariable Long id, @RequestBody ServicoUpdateForm form, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<ServicoDTO> alterar(@PathVariable Long id, @RequestBody @Valid ServicoUpdateForm form, UriComponentsBuilder uriBuilder) {
         Servico updatedServico = servicoService.atualizar(id, form);
         return ResponseEntity.ok(ServicoDTO.toDTO(updatedServico));
     }

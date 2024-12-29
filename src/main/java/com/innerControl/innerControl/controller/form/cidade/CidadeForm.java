@@ -5,9 +5,13 @@ import com.innerControl.innerControl.controller.form.pais.PaisForm;
 import com.innerControl.innerControl.models.Cidade;
 import com.innerControl.innerControl.models.Estado;
 import com.innerControl.innerControl.models.Pais;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 public class CidadeForm {
     private Long id;
+    @NotNull(message = "Nome da cidade deve ser informado!")
+    @NotEmpty(message = "Nome da cidade deve ser informado!")
     private String nome;
     private EstadoForm estado;
     private PaisForm pais;

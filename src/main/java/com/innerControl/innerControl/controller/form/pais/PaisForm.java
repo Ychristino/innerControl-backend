@@ -1,8 +1,15 @@
 package com.innerControl.innerControl.controller.form.pais;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 public class PaisForm {
     private Long id;
+    @NotNull(message = "Nome do país deve ser informado!")
+    @NotEmpty(message = "Nome do país deve ser informado!")
     private String nome;
+    @NotNull(message = "Sigla do país deve ser informada!")
+    @NotEmpty(message = "Sigla do país deve ser informada!")
     private String sigla;
 
     // Getters e Setters
