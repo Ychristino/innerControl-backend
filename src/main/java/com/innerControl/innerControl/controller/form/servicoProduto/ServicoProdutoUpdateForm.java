@@ -5,6 +5,8 @@ public class ServicoProdutoUpdateForm {
     private Long idProduto;
     private int quantidade;
 
+    private Float valorProduto;
+
     public Long getId() {
         return id;
     }
@@ -27,5 +29,13 @@ public class ServicoProdutoUpdateForm {
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
+    }
+
+    public Float getValorProduto() {
+        return valorProduto;
+    }
+
+    public void setValorProduto(Float valorProduto) {
+        this.valorProduto = valorProduto;
     }
 }

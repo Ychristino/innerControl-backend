@@ -6,6 +6,7 @@ public class CidadeDTO {
     private Long id;
     private String nome;
     private EstadoDTO estado;
+    private PaisDTO pais;
 
     // Getters e Setters
 
@@ -33,6 +34,14 @@ public class CidadeDTO {
         this.estado = estado;
     }
 
+    public PaisDTO getPais() {
+        return pais;
+    }
+
+    public void setPais(PaisDTO pais) {
+        this.pais = pais;
+    }
+
     public static CidadeDTO toDTO(Cidade cidade) {
         if (cidade == null) return null;
 
@@ -40,6 +49,7 @@ public class CidadeDTO {
         dto.setId(cidade.getId());
         dto.setNome(cidade.getNome());
         dto.setEstado(EstadoDTO.toDTO(cidade.getEstado()));
+        dto.setPais(PaisDTO.toDTO(cidade.getPais()));
         return dto;
     }
 
@@ -48,6 +58,7 @@ public class CidadeDTO {
         Cidade cidade = new Cidade();
         cidade.setNome(dto.getNome());
         cidade.setEstado(EstadoDTO.toEntity(dto.getEstado()));
+        cidade.setPais(PaisDTO.toEntity(dto.getPais()));
         return cidade;
     }
 

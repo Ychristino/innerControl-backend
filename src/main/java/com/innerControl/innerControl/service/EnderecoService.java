@@ -30,6 +30,7 @@ public class EnderecoService {
             novoEndereco.setNumero(form.getNumero());
             novoEndereco.setComplemento(form.getComplemento());
             novoEndereco.setCep(form.getCep());
+            //novoEndereco.setCidade(cidadeService.criar(form.getCidade()));
             novoEndereco.setCidade(cidadeService.criar(form.getCidade()));
             novoEndereco.setPessoaFisica(pessoaFisica);
             return novoEndereco;
@@ -52,6 +53,7 @@ public class EnderecoService {
                 endereco.setNumero(form.getNumero());
                 endereco.setComplemento(form.getComplemento());
                 endereco.setCep(form.getCep());
+                //endereco.setCidade(cidadeService.atualizar(form.getCidade()));
                 endereco.setCidade(cidadeService.atualizar(form.getCidade()));
                 return endereco;
             } else {

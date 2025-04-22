@@ -8,6 +8,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Range;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,6 +34,15 @@ public class PessoaFisicaService {
 
     public List<PessoaFisica> listarTodos() {
         return pessoaFisicaRepository.findAll();
+    }
+
+    public Page<PessoaFisica> listarTodosPorNome(String nome, Pageable pageable) {
+            return pessoaFisicaRepository.findAllByNomeContainingIgnoreCase(nome, pageable);
+    }
+    public PessoaFisica buscarPorId(Long id) {
+        PessoaFisica pessoaFisica = pessoaFisicaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Pessoa Física não encontrada!"));
+        return pessoaFisica;
     }
 
     @Transactional
@@ -71,11 +81,5 @@ public class PessoaFisicaService {
     @Transactional
     public void excluir(Long id) {
         pessoaFisicaRepository.deleteById(id);
-    }
-
-    public PessoaFisica buscarPorId(Long id) {
-        PessoaFisica pessoaFisica = pessoaFisicaRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Pessoa Física não encontrada!"));
-        return pessoaFisica;
     }
 }

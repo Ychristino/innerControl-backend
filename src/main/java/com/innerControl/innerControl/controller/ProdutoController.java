@@ -1,5 +1,6 @@
 package com.innerControl.innerControl.controller;
 
+import com.innerControl.innerControl.controller.dto.PessoaFisicaDTO;
 import com.innerControl.innerControl.controller.dto.ProdutoDTO;
 import com.innerControl.innerControl.controller.form.produto.ProdutoForm;
 import com.innerControl.innerControl.controller.form.produto.ProdutoUpdateForm;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/produtos")
@@ -24,9 +27,20 @@ public class ProdutoController {
     private ProdutoService produtoService;
 
     @GetMapping
-    public Page<ProdutoDTO> listarTodos(@PageableDefault(sort = "id", size = 10, direction = Sort.Direction.DESC) Pageable paginacao) {
-        return produtoService.listarProdutos(paginacao)
-                .map(ProdutoDTO::toDTO);
+    public Page<ProdutoDTO> listarTodos(@RequestParam(required = false, defaultValue = "") String nome,
+                                        @PageableDefault(sort = "id", size = 10, direction = Sort.Direction.DESC) Pageable paginacao) {
+        if (nome.isBlank() || nome.isEmpty())
+            return produtoService.listarProdutos(paginacao)
+                    .map(ProdutoDTO::toDTO);
+        else
+            return produtoService.listarProdutosPorNome(nome, paginacao)
+                    .map(ProdutoDTO::toDTO);
+    }
+
+    @GetMapping("/nopaginated")
+    public List<ProdutoDTO> listarTodos() {
+        return produtoService.listarProdutos()
+                .stream().map(ProdutoDTO::toDTO).collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")

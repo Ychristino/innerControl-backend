@@ -13,8 +13,9 @@ public class Servico {
     private Long id;
 
     private String descricao;
-
+    @Temporal(TemporalType.DATE)
     private Date dataEntrada;
+    @Temporal(TemporalType.DATE)
     private Date dataEntrega;
     @ManyToOne
     @JoinColumn(name = "pessoa_fisica_id", nullable = false)

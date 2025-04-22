@@ -1,6 +1,7 @@
 package com.innerControl.innerControl.controller;
 
 import com.innerControl.innerControl.controller.dto.EstoqueDTO;
+import com.innerControl.innerControl.controller.dto.PaisDTO;
 import com.innerControl.innerControl.controller.dto.PessoaFisicaDTO;
 import com.innerControl.innerControl.controller.dto.ProdutoDTO;
 import com.innerControl.innerControl.controller.form.pessoaFisica.PessoaFisicaForm;
@@ -27,9 +28,20 @@ public class PessoaFisicaController {
     private PessoaFisicaService pessoaFisicaService;
 
     @GetMapping
-    public Page<PessoaFisicaDTO> listarTodos(@PageableDefault(sort = "nome", size = 10, direction = Sort.Direction.ASC) Pageable paginacao) {
-        return pessoaFisicaService.listarTodos(paginacao)
-                .map(PessoaFisicaDTO::toDTO);
+    public Page<PessoaFisicaDTO> listarTodos(@RequestParam(required = false, defaultValue = "") String nome,
+                                             @PageableDefault(sort = "nome", size = 10, direction = Sort.Direction.ASC) Pageable paginacao) {
+        if (nome.isBlank() || nome.isEmpty())
+            return pessoaFisicaService.listarTodos(paginacao)
+                    .map(PessoaFisicaDTO::toDTO);
+        else
+            return pessoaFisicaService.listarTodosPorNome(nome, paginacao)
+                    .map(PessoaFisicaDTO::toDTO);
+    }
+
+    @GetMapping("/nopaginated")
+    public List<PessoaFisicaDTO> listarTodos() {
+        return pessoaFisicaService.listarTodos()
+                .stream().map(PessoaFisicaDTO::toDTO).collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")

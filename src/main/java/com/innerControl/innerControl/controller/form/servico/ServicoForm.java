@@ -19,8 +19,9 @@ public class ServicoForm {
     @NotNull(message = "O serviço deve ser atribuiído a uma pessoa!")
     private Long pessoaId;
     @NotNull(message = "Valor do serviço deve ser informado!")
-    @Positive(message = "Valor do serviçõ deve ser positivo!")
+    @Positive(message = "Valor do serviço deve ser positivo!")
     private BigDecimal valor;
+
     private List<ServicoProdutoForm> produtosUtilizados;
 
     // Getters e Setters

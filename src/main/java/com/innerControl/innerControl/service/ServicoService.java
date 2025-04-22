@@ -11,6 +11,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import org.springframework.data.domain.Pageable;
+
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -65,6 +67,9 @@ public class ServicoService {
         return servicoRepository.findAll();
     }
 
+    public Page<Servico> listarServicos(String nome, Date dataEntrada, Date dataEntrega, Pageable pageable) {
+        return servicoRepository.buscarServicos(nome, dataEntrada, dataEntrega, pageable);
+    }
     @Transactional
     public void excluir(Long id) {
         // BUSCA OS ITENS PARA PERMITIR DEVOLVER TUDO PARA O ESTOQUE

@@ -19,6 +19,8 @@ public class ServicoProduto {
 
     private Integer quantidade; // Quantidade do produto utilizado no serviço
 
+    private Float valorProduto;
+
     // Getters and Setters
     public Long getId() {
         return id;
@@ -46,5 +48,13 @@ public class ServicoProduto {
 
     public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
+    }
+
+    public Float getValorProduto() {
+        return valorProduto;
+    }
+
+    public void setValorProduto(Float valorProduto) {
+        this.valorProduto = valorProduto;
     }
 }

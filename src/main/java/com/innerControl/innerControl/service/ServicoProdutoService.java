@@ -33,6 +33,7 @@ public class ServicoProdutoService {
             ServicoProduto newServicoProduto = new ServicoProduto();
             newServicoProduto.setProduto(produtoService.buscarPorId(item.getIdProduto()));
             newServicoProduto.setQuantidade(item.getQuantidade());
+            newServicoProduto.setValorProduto(item.getValorProduto());
             newServicoProduto.setServico(servico);
 
             return newServicoProduto;
@@ -85,6 +86,7 @@ public class ServicoProdutoService {
                 }
             }
             servicoProduto.setQuantidade(item.getQuantidade());
+            servicoProduto.setValorProduto(item.getValorProduto());
 
             return servicoProduto;
 

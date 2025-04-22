@@ -7,6 +7,7 @@ import com.innerControl.innerControl.models.Servico;
 import com.innerControl.innerControl.service.ServicoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -14,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;import java.net.URI;
+import java.util.Date;
 
 
 @RestController
@@ -24,9 +26,15 @@ public class ServicoController {
     private ServicoService servicoService;
 
     @GetMapping
-    public Page<ServicoDTO> listarTodos(@PageableDefault(sort = "dataEntrega", size = 10, direction = Sort.Direction.DESC) Pageable paginacao) {
-        return servicoService.listarServicos(paginacao)
-                .map(ServicoDTO::toDTO);
+    public Page<ServicoDTO> listarTodos(@RequestParam(required = false, defaultValue = "") String nome,
+                                        @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd")Date dataEntrada,
+                                        @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd")Date dataEntrega,
+                                        @PageableDefault(sort = "dataEntrega", size = 10, direction = Sort.Direction.DESC) Pageable paginacao)
+    {
+            return  servicoService.listarServicos(nome, dataEntrada, dataEntrega, paginacao)
+                    .map(ServicoDTO::toDTO);
+            //return servicoService.listarServicos(paginacao)
+            //        .map(ServicoDTO::toDTO);
     }
 
     @GetMapping("/{id}")

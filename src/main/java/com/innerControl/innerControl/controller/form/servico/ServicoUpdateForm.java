@@ -20,10 +20,10 @@ public class ServicoUpdateForm {
     private Date dataEntrada;
     @NotNull(message = "Data de entrega deve ser informada!")
     private Date dataEntrega;
-    @NotNull(message = "O serviço deve ser atribuiído a uma pessoa!")
+    @NotNull(message = "O serviço deve ser atribuído a uma pessoa!")
     private Long pessoaId;
     @NotNull(message = "Valor do serviço deve ser informado!")
-    @Positive(message = "Valor do serviçõ deve ser positivo!")
+    @Positive(message = "Valor do serviço deve ser positivo!")
     private BigDecimal valor;
     private List<ServicoProdutoUpdateForm> produtosUtilizados;
 
@@ -50,6 +50,14 @@ public class ServicoUpdateForm {
 
     public void setDataEntrega(Date dataEntrega) {
         this.dataEntrega = dataEntrega;
+    }
+
+    public Long getPessoaId() {
+        return pessoaId;
+    }
+
+    public void setPessoaId(Long pessoaId) {
+        this.pessoaId = pessoaId;
     }
 
     public BigDecimal getValor() {
