@@ -26,15 +26,13 @@ public class ServicoController {
     private ServicoService servicoService;
 
     @GetMapping
-    public Page<ServicoDTO> listarTodos(@RequestParam(required = false, defaultValue = "") String nome,
-                                        @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd")Date dataEntrada,
-                                        @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd")Date dataEntrega,
+    public Page<ServicoDTO> listarTodos(@RequestParam(required = false, defaultValue = "", name = "nome") String nome,
+                                        @RequestParam(required = false, defaultValue = "1000-01-01", name="dataEntrada") @DateTimeFormat(pattern = "yyyy-MM-dd", iso = DateTimeFormat.ISO.DATE)Date dataEntrada,
+                                        @RequestParam(required = false, defaultValue = "1000-01-01", name="dataEntrega") @DateTimeFormat(pattern = "yyyy-MM-dd", iso = DateTimeFormat.ISO.DATE)Date dataEntrega,
                                         @PageableDefault(sort = "dataEntrega", size = 10, direction = Sort.Direction.DESC) Pageable paginacao)
     {
             return  servicoService.listarServicos(nome, dataEntrada, dataEntrega, paginacao)
                     .map(ServicoDTO::toDTO);
-            //return servicoService.listarServicos(paginacao)
-            //        .map(ServicoDTO::toDTO);
     }
 
     @GetMapping("/{id}")

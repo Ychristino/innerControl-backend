@@ -68,7 +68,7 @@ public class ServicoService {
     }
 
     public Page<Servico> listarServicos(String nome, Date dataEntrada, Date dataEntrega, Pageable pageable) {
-        return servicoRepository.buscarServicos(nome, dataEntrada, dataEntrega, pageable);
+        return servicoRepository.findAllByPessoaNomeContainingIgnoreCaseAndDataEntradaAfterAndDataEntregaAfter(nome, dataEntrada, dataEntrega, pageable);
     }
     @Transactional
     public void excluir(Long id) {
